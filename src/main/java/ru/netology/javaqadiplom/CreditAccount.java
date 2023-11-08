@@ -41,9 +41,8 @@ public class CreditAccount extends Account {
         if (amount <= 0) {
             return false;
         }
-        balance = balance - amount;
-        if (balance > -creditLimit) {
-            balance = -amount;
+        if (balance - amount > -creditLimit) {
+            balance -= amount;
             return true;
         } else {
             return false;
@@ -56,9 +55,9 @@ public class CreditAccount extends Account {
      * на сумму покупки. Если же операция может привести к некорректному
      * состоянию счёта, то операция должна
      * завершиться вернув false и ничего не поменяв на счёте.
-     * @param amount - сумма пополнения
-     * @return true если операция прошла успешно, false иначе.
-     * @param amount
+//     * @param amount - сумма пополнения
+//     * @return true если операция прошла успешно, false иначе.
+//     * @param amount
      * @return
      */
     @Override
@@ -66,7 +65,7 @@ public class CreditAccount extends Account {
         if (amount <= 0) {
             return false;
         }
-        balance = amount;
+        balance += amount;
         return true;
     }
 
@@ -80,9 +79,12 @@ public class CreditAccount extends Account {
      */
     @Override
     public int yearChange() {
-        return balance / 100 * rate;
+        if (balance >= 0) {
+            return 0;
+        } else {
+            return (balance * rate) / 100;
+        }
     }
-
     public int getCreditLimit() {
         return creditLimit;
     }
