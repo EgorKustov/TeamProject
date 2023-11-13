@@ -39,20 +39,17 @@ public class CreditAccount extends Account {
      * @return true если операция прошла успешно, false иначе.
      */
     @Override
-    public boolean pay(int amount) {
+      public boolean pay(int amount) {
         if (amount <= 0) {
             return false;
         }
 
-        if (creditLimit < amount) {
-            return false;
+        if (creditLimit >= amount) {
+            balance = balance - amount;
+            return true;
         } else {
-            if (creditLimit >= amount) {
-                balance = balance - amount;
-                return true;
-            }
+            return false;
         }
-        return false;
     }
 
 
