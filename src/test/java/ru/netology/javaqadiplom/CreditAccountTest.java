@@ -136,7 +136,7 @@ public class CreditAccountTest {
         );
         // указываем отрицательный баланс
 
-        Assertions.assertEquals(20, account.yearChange()); // проверяем, что проценты начислились
+        Assertions.assertEquals(-20, account.yearChange()); // проверяем, что проценты начислились
     }
     @Test
     public void testYearChangeWithZeroBalance() {
