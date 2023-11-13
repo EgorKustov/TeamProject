@@ -269,8 +269,31 @@ public class SavingAccountTest {
                 ));
 
     }
+    @Test
+    public void testGetMinBalance() {
+        SavingAccount account = new SavingAccount(
+                0,
+                1_000,
+                5_000,
+                15
+        );
 
+        Assertions.assertEquals(1_000, account.getMinBalance());
 
+    }
+
+    @Test
+    public void testGetMaxBalance() {
+        SavingAccount account = new SavingAccount(
+                0,
+                1_000,
+                5_000,
+                15
+        );
+
+        Assertions.assertEquals(5_000, account.getMaxBalance());
+
+    }
 }
 
 

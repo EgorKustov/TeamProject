@@ -45,8 +45,8 @@ public class SavingAccount extends Account {
         if (amount <= 0) {
             return false;
         }
-        balance = balance - amount;
-        if (balance > minBalance) {
+        if (balance - amount >= minBalance) {
+            balance = balance - amount;
             return true;
         } else {
             return false;
@@ -66,11 +66,11 @@ public class SavingAccount extends Account {
      */
     @Override
     public boolean add(int amount) {
-        if (amount <= 0) {
+        if (amount <= 0 || balance + amount < minBalance) {
             return false;
         }
         if (balance + amount < maxBalance) {
-            balance = amount;
+            balance += amount;
             return true;
         } else {
             return false;
