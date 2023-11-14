@@ -269,6 +269,7 @@ public class SavingAccountTest {
                 ));
 
     }
+
     @Test
     public void testGetMinBalance() {
         SavingAccount account = new SavingAccount(
