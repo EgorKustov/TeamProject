@@ -144,6 +144,29 @@ public class BankTest {
         // пробуем перевести 0
     }
 
+    @Test
+    public void ShouldNotTransferMoreThenMinBalance() {
+        Bank bank = new Bank();
+        SavingAccount SavingAccount = new SavingAccount(
+                2_000,
+                1_000,
+                5_000,
+                15
+        );
+
+        CreditAccount CreditAccount = new CreditAccount(
+                0,
+                5_000,
+                15
+        );
+
+
+        Assertions.assertFalse(bank.transfer(SavingAccount, CreditAccount, 2_000));
+        Assertions.assertEquals(2_000, SavingAccount.getBalance());
+        Assertions.assertEquals(0, CreditAccount.getBalance());
+        // на счету сбер. счета не должно быть меньше минимума
+    }
+
 
 }
 
