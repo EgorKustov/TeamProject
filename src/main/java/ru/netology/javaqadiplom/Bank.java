@@ -14,35 +14,22 @@ public class Bank {
      * @param amount - сумма перевода
      * @return - true если операция прошла успешно, false иначе
      */
+
     public boolean transfer(Account from, Account to, int amount) {
         if (amount <= 0) {
             return false;
         }
 
-        if (from instanceof CreditAccount) {
-            CreditAccount creditAccount = (CreditAccount) from;
-            if (amount > creditAccount.getCreditLimit()) {
-                return false;
-            }
-        }
-
         if (from.pay(amount)) {
             if (to.add(amount)) {
-                if (to instanceof SavingAccount) {
-                    SavingAccount savingAccount = (SavingAccount) to;
-                    if (savingAccount.getBalance() > savingAccount.getMaxBalance() || savingAccount.getBalance() < savingAccount.getMinBalance()) {
-                        // Откатываем операцию только при нарушении условий SavingAccount
-                        from.add(amount);
-                        to.pay(amount);
-                        return false;
-                    }
-                }
+                return true;
             } else {
-                from.add(amount); // Откатываем операцию при неудачном зачислении на счет to
+                // Откатываем операцию при неудачном зачислении на счет to
+                from.add(amount);
                 return false;
             }
         }
 
-        return true;
+        return false;
     }
 }
