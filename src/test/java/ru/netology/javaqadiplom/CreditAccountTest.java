@@ -18,6 +18,7 @@ public class CreditAccountTest {
 
         Assertions.assertEquals(3_000, account.getBalance()); //проверяем баланс
     }
+
     @Test
     public void testAddWithPositiveAmountAndNegativeBalance() {
         CreditAccount account = new CreditAccount(
@@ -30,6 +31,7 @@ public class CreditAccountTest {
 
         Assertions.assertEquals(50, account.getBalance()); //проверяем, что баланс пополнился
     }
+
     @Test
     public void testAddWithNegativeAmount() {
         CreditAccount account = new CreditAccount(
@@ -42,6 +44,7 @@ public class CreditAccountTest {
 
         Assertions.assertEquals(100, account.getBalance()); //проверяем, что баланс не изменился
     }
+
     @Test
     public void testAddWithZeroAmount() {
         CreditAccount account = new CreditAccount(
@@ -54,6 +57,7 @@ public class CreditAccountTest {
 
         Assertions.assertEquals(100, account.getBalance()); //проверяем, что баланс не изменился
     }
+
     //проверки на списание средств
     @Test
     public void testPayWithNegativeAmount() {
@@ -67,6 +71,7 @@ public class CreditAccountTest {
 
         Assertions.assertEquals(100, account.getBalance()); // проверяем, что баланс не изменился
     }
+
     @Test
     public void testPayWithZeroAmount() {
         CreditAccount account = new CreditAccount(
@@ -79,6 +84,7 @@ public class CreditAccountTest {
 
         Assertions.assertEquals(100, account.getBalance()); // проверяем, что баланс не изменился
     }
+
     @Test
     public void testPayExceedingCreditLimit() {
         CreditAccount account = new CreditAccount(
@@ -91,6 +97,7 @@ public class CreditAccountTest {
 
         Assertions.assertEquals(-200, account.getBalance()); //проверяем, что баланс не изменился
     }
+
     @Test
     void testPayMoreThanBalance() {
         CreditAccount account = new CreditAccount(
@@ -103,6 +110,7 @@ public class CreditAccountTest {
 
         Assertions.assertEquals(-100, account.getBalance()); // проверяем, что баланс ушёл в минус, но за пределы лимита не вышел
     }
+
     @Test
     void testPayStandartBalance() {
         CreditAccount account = new CreditAccount(
@@ -127,6 +135,7 @@ public class CreditAccountTest {
 
         Assertions.assertEquals(0, account.yearChange()); // проверяем, что проценты не начилслились
     }
+
     @Test
     public void testYearChangeWithNegativeBalance() {
         CreditAccount account = new CreditAccount(
@@ -138,6 +147,7 @@ public class CreditAccountTest {
 
         Assertions.assertEquals(-20, account.yearChange()); // проверяем, что проценты начислились
     }
+
     @Test
     public void testYearChangeWithZeroBalance() {
         CreditAccount account = new CreditAccount(
@@ -148,6 +158,7 @@ public class CreditAccountTest {
 
         Assertions.assertEquals(0, account.yearChange()); //проверяем, что проценты не начислились
     }
+
     @Test
     void testConstructorWithNegativeRate() {
         Assertions.assertThrows(IllegalArgumentException.class,
@@ -157,6 +168,7 @@ public class CreditAccountTest {
                         -10
                 ));
     }
+
     @Test
     public void testGetCreditLimit() {
         CreditAccount account = new CreditAccount(
